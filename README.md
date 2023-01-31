@@ -17,15 +17,6 @@ Run symfony server:start to launch your local php web server
 Run yarn run dev --watch to launch your local server for assets (or yarn dev-server do the same with Hot Module Reload activated)
 Testing
 
-Run php ./vendor/bin/phpcs to launch PHP code sniffer
-Run php ./vendor/bin/phpstan analyse src --level max to launch PHPStan
-Run php ./vendor/bin/phpmd src text phpmd.xml to launch PHP Mess Detector
-Run ./node_modules/.bin/eslint assets/js to launch ESLint JS linter
-Windows Users
-
-If you develop on Windows, you should edit you git configuration to change your end of line rules with this command:
-
-git config --global core.autocrlf true
 
 The .editorconfig file in root directory do this for you. You probably need EditorConfig extension if your IDE is VSCode.
 
