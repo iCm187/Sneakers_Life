@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Style;
+use App\Entity\Sneakers;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Style>
+ * @extends ServiceEntityRepository<Sneakers>
  *
- * @method Style|null find($id, $lockMode = null, $lockVersion = null)
- * @method Style|null findOneBy(array $criteria, array $orderBy = null)
- * @method Style[]    findAll()
- * @method Style[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Sneakers|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Sneakers|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Sneakers[]    findAll()
+ * @method Sneakers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StyleRepository extends ServiceEntityRepository
+class SneakersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Style::class);
+        parent::__construct($registry, Sneakers::class);
     }
 
-    public function save(Style $entity, bool $flush = false): void
+    public function save(Sneakers $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class StyleRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Style $entity, bool $flush = false): void
+    public function remove(Sneakers $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class StyleRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Style[] Returns an array of Style objects
+//     * @return Sneakers[] Returns an array of Sneakers objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class StyleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Style
+//    public function findOneBySomeField($value): ?Sneakers
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')
