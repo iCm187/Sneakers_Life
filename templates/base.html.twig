@@ -38,9 +38,11 @@
 						<li>
 							<a class="dropdown-item text-white py-2" href="{{ path('app_admin') }}">Administration</a>
 						</li>
+						{% if app.user %}
 						<li>
 							<a class="dropdown-item nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
 						</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>

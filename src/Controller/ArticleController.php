@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Sneakers;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +22,7 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ArticleRepository $articleRepository): Response
     {
@@ -47,7 +49,7 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
@@ -65,7 +67,7 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
