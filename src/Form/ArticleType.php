@@ -14,8 +14,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('date_publication')
             ->add('titre')
-            ->add('contenu')
-        ;
+            ->add('contenu');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
