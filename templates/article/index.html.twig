@@ -18,7 +18,7 @@
 		<tbody>
 			{% for article in articles %}
 				<tr>
-					<td>{{ article.datePublication ? article.datePublication|date('Y-m-d') : '' }}</td>
+					<td>{{ article.datePublication ? article.datePublication|date('d-m-Y') : '' }}</td>
 					<td>{{ article.titre }}</td>
 					<td>{{ article.contenu }}</td>
 					<td>
@@ -37,6 +37,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
-	<a href="{{ path('app_article_new') }}">Create new</a>
 {% endblock %}
