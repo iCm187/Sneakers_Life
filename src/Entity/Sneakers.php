@@ -25,6 +25,12 @@ class Sneakers
     #[ORM\Column(length: 255)]
     private ?string $images = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $vote = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sneakers')]
+    private ?Brand $brand = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +80,30 @@ class Sneakers
     public function setImages(string $images): self
     {
         $this->images = $images;
+
+        return $this;
+    }
+
+    public function getVote(): ?int
+    {
+        return $this->vote;
+    }
+
+    public function setVote(?int $vote): self
+    {
+        $this->vote = $vote;
+
+        return $this;
+    }
+
+    public function getBrand(): ?Brand
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?Brand $brand): self
+    {
+        $this->brand = $brand;
 
         return $this;
     }
