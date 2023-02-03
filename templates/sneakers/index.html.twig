@@ -6,24 +6,11 @@
 {% block body %}
 	<div class="bg-black pt-5" style="min-height: 100vh;background-color: black;">
 		<h1 class="text-white text-center myTitle mb-5">
-			Les actualités sneakers
+			Les prochaine sortie sneakers
 		</h1>
 
 		<div class="row row-cols-1 row-cols-md-4 g-4 px-3 m-4">
-			{% for sneakers in sneakers %}
-				<div class="col">
-					<div class="card h-100">
-						<img src="{{ sneakers.images }}">
-						<div class="card-body">
-							<h2 class="card-title fs-4">{{ sneakers.name }}</h2>
-							<p>
-								<a class="text-black" href="{{ path('app_article_index', {'id': sneakers.id}) }}">Voir l'article</a>
-							</p>
-
-						</div>
-					</div>
-				</div>
-			{% endfor %}
+			
 		</div>
 	</div>
 {% endblock %}
