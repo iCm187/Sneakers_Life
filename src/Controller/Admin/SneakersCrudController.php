@@ -2,13 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Brand;
 use App\Entity\Sneakers;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Doctrine\ORM\EntityManagerInterface;
 
 class SneakersCrudController extends AbstractCrudController
 {
@@ -21,6 +23,41 @@ class SneakersCrudController extends AbstractCrudController
     {
         return $crud
             ->setPageTitle("index", "Sneakers administration")
-            ->setPaginatorPageSize(25);
+            ->setPaginatorPageSize(15);
+    }
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id')
+                ->hideOnForm(),
+            TextField::new('name'),
+            TextField::new('style'),
+            ImageField::new('images')->setUploadDir('assets/images/'),
+            ChoiceField::new('gender')
+                ->setChoices([
+                    'Homme' => 'Homme',
+                    'Femme' => 'Femme',
+                ]),
+            ChoiceField::new('brand')
+                ->setChoices(function () {
+                    $choices = [];
+                    $brands = $this->entityManager->getRepository(Brand::class)->findAll();
+                    foreach ($brands as $brand) {
+                        $choices[$brand->getName()] = $brand->getName();
+                    }
+                    return $choices;
+                })
+        ];
     }
 }
