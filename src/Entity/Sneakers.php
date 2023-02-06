@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SneakersRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SneakersRepository::class)]
@@ -30,6 +31,9 @@ class Sneakers
 
     #[ORM\ManyToOne(inversedBy: 'sneakers')]
     private ?Brand $brand = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $realesed_date = null;
 
     public function getId(): ?int
     {
@@ -104,6 +108,18 @@ class Sneakers
     public function setBrand(?Brand $brand): self
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getRealesedDate(): ?\DateTimeInterface
+    {
+        return $this->realesed_date;
+    }
+
+    public function setRealesedDate(?\DateTimeInterface $realesed_date): self
+    {
+        $this->realesed_date = $realesed_date;
 
         return $this;
     }
