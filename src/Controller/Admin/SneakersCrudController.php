@@ -46,7 +46,7 @@ class SneakersCrudController extends AbstractCrudController
             TextField::new('name'),
             AssociationField::new('brand')->setCrudController(BrandCrudController::class),
             TextField::new('style'),
-            ImageField::new('images')->setUploadDir('assets/images/'),
+            ImageField::new('images')->setUploadDir('public/build/images/'),
             DateField::new('realesedDate')
                 ->setFormat('long'),
             ChoiceField::new('gender')
