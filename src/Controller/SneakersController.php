@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Sneakers;
 use App\Form\SneakersType;
+use App\Repository\SneakersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,10 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class SneakersController extends AbstractController
 {
     #[Route('/sneakers', name: 'app_sneakers_index')]
-    public function index(): Response
+    public function index(SneakersRepository $sneakersRepository): Response
     {
+
+        $sneakers = $sneakersRepository->findAll();
+
         return $this->render('sneakers/index.html.twig', [
-            'controller_name' => 'SneakerController',
+            'sneakers' => $sneakers,
         ]);
     }
 
