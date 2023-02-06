@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 
 class SneakersCrudController extends AbstractCrudController
@@ -43,8 +44,9 @@ class SneakersCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('name'),
+            AssociationField::new('brand')->setCrudController(BrandCrudController::class),
             TextField::new('style'),
-            ImageField::new('images')->setUploadDir('assets/images/'),
+            ImageField::new('images')->setUploadDir('public/build/images/'),
             DateField::new('realesedDate')
                 ->setFormat('long'),
             ChoiceField::new('gender')
@@ -52,15 +54,6 @@ class SneakersCrudController extends AbstractCrudController
                     'Homme' => 'Homme',
                     'Femme' => 'Femme',
                 ]),
-            /*ChoiceField::new('brand')
-                ->setChoices(function () {
-                    $choices = [];
-                    $brands = $this->entityManager->getRepository(Brand::class)->findAll();
-                    foreach ($brands as $brand) {
-                        $choices[$brand->getName()] = $brand->getName();
-                    }
-                    return $choices;
-                })*/
         ];
     }
 }
