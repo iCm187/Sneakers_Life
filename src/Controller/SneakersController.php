@@ -3,9 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Sneakers;
-use App\Form\SneakersType;
 use App\Repository\SneakersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
