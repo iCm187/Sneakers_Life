@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="bg-black" style="min-height: 100vh; background-color: black;">
+		<h1 class="text-center text-white pt-5">{{ sneakers.name }}</h1>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-4">
+				<img src="{{ asset('build/images/' ~ sneakers.images) }}" class="w-100">
+			</div>
+			<div class="col-12 col-md-8 m-5">
+				<p class="text-white ms-5">Realeses:
+					{{ sneakers.realeseddate.format('d/m/Y') }}</p>
+				<p class="text-white ms-5">Gender:
+					{{ sneakers.gender }}</p>
+				<p class="text-white ms-5">Brand:
+					{{ sneakers.brand.name }}</p>
+				<p class="text-white ms-5">Style:
+					{{ sneakers.style }}</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}
